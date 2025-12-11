@@ -22,7 +22,7 @@ contract ControllerGeneric {
     /*//////////////////////////////////////////////////////////////
                                 FUNCTIONS
     //////////////////////////////////////////////////////////////*/
-    /** @notice Trigger depeg event
+    /** @notice Trigger depeg event; Users can run this function anytime they think liquidation should be triggered
      * @param _marketId Target market index
      * @param _epochId End of epoch set for market
      */

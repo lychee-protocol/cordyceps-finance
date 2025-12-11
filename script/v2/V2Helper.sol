@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 import "forge-std/Script.sol";
 import "forge-std/StdJson.sol";
 import "forge-std/Test.sol";
-//TODO change this after deploy  y2k token
+//TODO change this after deploy  cordy token
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "../../src/v2/Carousel/CarouselFactory.sol";
 import "../../src/v2/Carousel/CarouselFactoryPausable.sol";
@@ -45,7 +45,7 @@ contract HelperV2 is Script {
         address rolloverKeeperPausable;
         address treasury;
         address weth;
-        address y2k;
+        address cordy;
     }
 
     struct ConfigEpochWithEmission {
@@ -83,7 +83,7 @@ contract HelperV2 is Script {
         uint256 totalAmountOfEmittedTokens;
     }
 
-    address y2k;
+    address cordy;
     ConfigVariablesV2 configVariables;
     ConfigAddressesV2 configAddresses;
     bool isTestEnv;
@@ -103,7 +103,7 @@ contract HelperV2 is Script {
     function contractToAddresses(
         ConfigAddressesV2 memory _configAddresses
     ) public {
-        y2k = address(_configAddresses.y2k);
+        cordy = address(_configAddresses.cordy);
         factory = CarouselFactory(_configAddresses.carouselFactory);
         pausableFactory = CarouselFactory(
             _configAddresses.pausableCarouselFactory
@@ -259,9 +259,9 @@ contract HelperV2 is Script {
             return configAddresses.arb;
         } else if (
             keccak256(abi.encodePacked(_depositAsset)) ==
-            keccak256(abi.encodePacked(string("Y2K")))
+            keccak256(abi.encodePacked(string("cordy")))
         ) {
-            return configAddresses.y2k;
+            return configAddresses.cordy;
         } else if (
             keccak256(abi.encodePacked(_depositAsset)) ==
             keccak256(abi.encodePacked(string("DAI")))

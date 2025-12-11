@@ -445,12 +445,12 @@ contract VaultFactory is Ownable {
 
         marketIndex += 1;
 
-        //y2kUSDC_99*RISK or y2kUSDC_99*HEDGE
+        //cordyUSDC_99*RISK or cordyUSDC_99*HEDGE
 
         Vault hedge = new Vault(
             WETH,
             string(abi.encodePacked(_name, "HEDGE")),
-            "hY2K",
+            "hcordy",
             treasury,
             _token,
             _strikePrice,
@@ -460,7 +460,7 @@ contract VaultFactory is Ownable {
         Vault risk = new Vault(
             WETH,
             string(abi.encodePacked(_name, "RISK")),
-            "rY2K",
+            "rcordy",
             treasury,
             _token,
             _strikePrice,

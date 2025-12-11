@@ -31,43 +31,43 @@ contract VaultFactoryTest is VaultFactoryHelper {
 
         // Create FRAX market
         //index 1
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "y2kFRAX_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "cordyFRAX_99*");
         //index 2
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_FRAX, "y2kFRAX_97*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_FRAX, "cordyFRAX_97*");
         //index 3
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_FRAX, "y2kFRAX_95*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_FRAX, "cordyFRAX_95*");
 
         // Create MIM market
         //index 4
-        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_MIM, "y2kMIM_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_MIM, "cordyMIM_99*");
         //index 5
-        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_MIM, "y2kMIM_97*");
+        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_MIM, "cordyMIM_97*");
         //index 6
-        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_MIM, "y2kMIM_95*");
+        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_MIM, "cordyMIM_95*");
 
         // Create FEI market
         //index 7
-        vaultFactory.createNewMarket(FEE, TOKEN_FEI, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FEI, "y2kFEI_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FEI, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FEI, "cordyFEI_99*");
         //index 8
-        vaultFactory.createNewMarket(FEE, TOKEN_FEI, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_FEI, "y2kFEI_97*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FEI, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_FEI, "cordyFEI_97*");
         //index 9
-        vaultFactory.createNewMarket(FEE, TOKEN_FEI, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_FEI, "y2kFEI_95*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FEI, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_FEI, "cordyFEI_95*");
 
         // Create USDC market
         //index 10
-        vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_USDC, "y2kUSDC_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_USDC, "cordyUSDC_99*");
         //index 11
-        vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_USDC, "y2kUSDC_97*");
+        vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_USDC, "cordyUSDC_97*");
         //index 12
-        vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_USDC, "y2kUSDC_95*");
+        vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_USDC, "cordyUSDC_95*");
 
         // Create DAI market
         //index 13
-        vaultFactory.createNewMarket(FEE, TOKEN_DAI, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_DAI, "y2kDAI_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_DAI, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_DAI, "cordyDAI_99*");
         //index 14
-        vaultFactory.createNewMarket(FEE, TOKEN_DAI, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_DAI, "y2kDAI_97*");
+        vaultFactory.createNewMarket(FEE, TOKEN_DAI, DEPEG_BBB, beginEpoch, endEpoch, ORACLE_DAI, "cordyDAI_97*");
         //index 15
-        vaultFactory.createNewMarket(FEE, TOKEN_DAI, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_DAI, "y2kDAI_95*");
+        vaultFactory.createNewMarket(FEE, TOKEN_DAI, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_DAI, "cordyDAI_95*");
         
         vm.stopPrank();
     }
@@ -109,7 +109,7 @@ contract VaultFactoryTest is VaultFactoryHelper {
     function testTimelocks() public {
         vm.startPrank(ADMIN);
         
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "y2kFRAX_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "cordyFRAX_99*");
         
         timestamper = block.timestamp + timelocker.MIN_DELAY() + 1;
         index = 1;
@@ -153,7 +153,7 @@ contract VaultFactoryTest is VaultFactoryHelper {
         //create fake oracle for price feed
         vm.startPrank(ADMIN);
         fakeOracle = new FakeOracle(ORACLE_FRAX, STRIKE_PRICE_FAKE_ORACLE);
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "y2kFRAX_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "cordyFRAX_99*");
         vm.stopPrank();
 
         //expect MarketDoesNotExist
@@ -194,14 +194,14 @@ contract VaultFactoryTest is VaultFactoryHelper {
         vm.startPrank(ADMIN);
         testFactory.setController(address(controller));
         vm.expectRevert(VaultFactory.AddressFactoryNotInController.selector);
-        testFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "y2kFRAX_99*");
+        testFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "cordyFRAX_99*");
         vm.stopPrank();
     }
 
     function testControllerNotSet() public {
         vm.startPrank(ADMIN);
         vm.expectRevert(VaultFactory.ControllerNotSet.selector);
-        testFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "y2kFRAX_99*");
+        testFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "cordyFRAX_99*");
         vm.stopPrank();
     }
 
@@ -214,7 +214,7 @@ contract VaultFactoryTest is VaultFactoryHelper {
         vm.startPrank(ADMIN);
         FakeOracle fakeOracle = new FakeOracle(ORACLE_FRAX, 90995265);
         for (uint256 i = 1; i <= index; i++){
-            vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "y2kFRAX_99*");
+            vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "cordyFRAX_99*");
         }
         assertEq(vaultFactory.marketIndex(), index);
         vm.stopPrank();

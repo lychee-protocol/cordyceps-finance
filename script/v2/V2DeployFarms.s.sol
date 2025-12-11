@@ -5,12 +5,12 @@ import "./V2Helper.sol";
 import "../../src/v2/interfaces/IConditionProvider.sol";
 import "../../src/v2/Controllers/ControllerGeneric.sol";
 
-/// @author Y2K Team
+/// @author cordy Team
 //forge script V2DeployFarms --rpc-url $ARBITRUM_RPC_URL --private-key $PRIVATE_KEY --broadcast --skip-simulation --slow --verify -vv
 
 // whitelist controller 0xC0655f3dace795cc48ea1E2e7BC012c1eec912dC
 contract V2DeployFarms is HelperV2 {
-    function setupY2K() public {
+    function setupcordy() public {
         setVariables();
 
         configAddresses = getConfigAddresses(configVariables.isTestEnv); //true if test env
@@ -32,7 +32,7 @@ contract V2DeployFarms is HelperV2 {
 
     function run() public {
         //LOAD json config and check bool deploy new markets
-        setupY2K();
+        setupcordy();
         //if true deploy new markets
         vm.startBroadcast();
 
@@ -80,27 +80,27 @@ contract V2DeployFarms is HelperV2 {
             StakingRewards collateralFarm = new StakingRewards(
                     msg.sender,
                     msg.sender,
-                    configAddresses.y2k,
+                    configAddresses.cordy,
                     vaults[1],
                     epochId,
                     epochEnd,
-                    string.concat("y2kCollateralFarm", marketName),
-                    "y2kFarmC"
+                    string.concat("cordyCollateralFarm", marketName),
+                    "cordyFarmC"
             );
 
             StakingRewards premiumFarm = new StakingRewards(
                     msg.sender,
                     msg.sender,
-                    configAddresses.y2k,
+                    configAddresses.cordy,
                     vaults[0],
                     epochId,
                     epochEnd,
-                    string.concat("y2kPremiumFarm", marketName),
-                    "y2kFarmP"
+                    string.concat("cordyPremiumFarm", marketName),
+                    "cordyFarmP"
             );                
 
-            IERC20(configAddresses.y2k).transfer(address(collateralFarm), stringToUint(epoch.collatEmissions));
-            IERC20(configAddresses.y2k).transfer(address(premiumFarm), stringToUint(epoch.premiumEmissions));
+            IERC20(configAddresses.cordy).transfer(address(collateralFarm), stringToUint(epoch.collatEmissions));
+            IERC20(configAddresses.cordy).transfer(address(premiumFarm), stringToUint(epoch.premiumEmissions));
             
             //start rewards for farms
             collateralFarm.notifyRewardAmount(
@@ -110,8 +110,8 @@ contract V2DeployFarms is HelperV2 {
                  stringToUint(epoch.premiumEmissions)
             );
 
-            // IERC20(configAddresses.y2k).transfer(address(collateralFarm),  1 ether);
-            // IERC20(configAddresses.y2k).transfer(address(premiumFarm),  2 ether);
+            // IERC20(configAddresses.cordy).transfer(address(collateralFarm),  1 ether);
+            // IERC20(configAddresses.cordy).transfer(address(premiumFarm),  2 ether);
             
             // collateralFarm.notifyRewardAmount(
             //     1 ether

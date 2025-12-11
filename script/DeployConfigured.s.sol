@@ -60,7 +60,7 @@ contract ConfigScript is Script, HelperConfig {
         vaultFactory.setController(address(controller));
 
         rewardsFactory = new RewardsFactory(
-            addresses.y2k,
+            addresses.cordy,
             address(vaultFactory)
         );
         keeperDepeg = new KeeperGelatoDepeg(
@@ -78,7 +78,7 @@ contract ConfigScript is Script, HelperConfig {
         console2.log("Controller address", address(controller));
         console2.log("Vault Factory address", address(vaultFactory));
         console2.log("Rewards Factory address", address(rewardsFactory));
-        console2.log("Y2K token address", addresses.y2k);
+        console2.log("cordy token address", addresses.cordy);
         console2.log("KeeperGelatoDepeg address", address(keeperDepeg));
         console2.log("KeeperGelatoEndEpoch address", address(keeperEndEpoch));
         console2.log("\n");

@@ -152,7 +152,7 @@ contract ControllerHelper is Test {
         vm.deal(CHAD, AMOUNT * CHAD_MULTIPLIER);
         vm.deal(DEGEN, AMOUNT * DEGEN_MULTIPLIER);
 
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "y2kFRAX_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, ORACLE_FRAX, "cordyFRAX_99*");
 
         hedge = vaultFactory.getVaults(_index)[0];
         risk = vaultFactory.getVaults(_index)[1];
@@ -202,7 +202,7 @@ contract ControllerHelper is Test {
 
         vm.startPrank(ADMIN);
         fakeOracle = new FakeOracle(ORACLE_FRAX, STRIKE_PRICE_FAKE_ORACLE);
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "y2kFRAX_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "cordyFRAX_99*");
         vm.stopPrank();
 
         hedge = vaultFactory.getVaults(1)[0];
@@ -248,7 +248,7 @@ contract ControllerHelper is Test {
 
         vm.startPrank(ADMIN);
         fakeOracle = new FakeOracle(ORACLE_FRAX, STRIKE_PRICE_FAKE_ORACLE);
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "y2kFRAX_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "cordyFRAX_99*");
         vm.stopPrank();
 
         hedge = vaultFactory.getVaults(1)[0];

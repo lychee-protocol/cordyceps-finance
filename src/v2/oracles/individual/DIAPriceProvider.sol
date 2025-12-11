@@ -48,7 +48,7 @@ contract DIAPriceProvider is IConditionProvider {
     }
 
     /** @notice Fetch price and return condition
-     * @dev The strike is hashed as an int256 to enable comparison vs. price for earthquake
+     * @dev The strike is hashed as an int256 to enable comparison vs. price for Cordyceps
         and conditional check vs. strike to ensure vaidity
      * @param _strike Strike price
      * @return condition boolean If condition is met i.e. strike > price

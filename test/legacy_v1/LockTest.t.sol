@@ -11,11 +11,11 @@ contract LockTest is Test {
 
     LockRewards public lockRewards16;
 
-    address public constant Y2K = 0x5D59e5837F7e5d0F710178Eda34d9eCF069B36D2;
+    address public constant cordy = 0x5D59e5837F7e5d0F710178Eda34d9eCF069B36D2;
     address public constant WETH = 0x6BE37a65E46048B1D12C0E08d9722402A5247Ff1;
     address public constant LP = 0xE3d9514f1485e3A26789B4a0a2A874D270EFE37e;
 
-    uint public constant REWARDS_Y2K = 5 ether;
+    uint public constant REWARDS_cordy = 5 ether;
     uint public constant REWARDS_WETH = 5 ether;
     uint public constant MAX_EPOCHS = 32;
     uint public constant MIN_EPOCHS = 16;
@@ -30,21 +30,21 @@ contract LockTest is Test {
     function setupDeploy() public {
         vm.startPrank(USER);
         console.log("Setup");
-        lockRewards16 = new LockRewards(LP, Y2K, WETH, MAX_EPOCHS, MIN_EPOCHS);
-        ERC20(Y2K).transfer(address(lockRewards16), REWARDS_Y2K);
-        ERC20(Y2K).transfer(address(lockRewards16), REWARDS_Y2K);
-        // emit log_named_uint("balance of Y2K", ERC20(Y2K).balanceOf(USER));
+        lockRewards16 = new LockRewards(LP, cordy, WETH, MAX_EPOCHS, MIN_EPOCHS);
+        ERC20(cordy).transfer(address(lockRewards16), REWARDS_cordy);
+        ERC20(cordy).transfer(address(lockRewards16), REWARDS_cordy);
+        // emit log_named_uint("balance of cordy", ERC20(cordy).balanceOf(USER));
         ERC20(WETH).transfer(address(lockRewards16), REWARDS_WETH);
         ERC20(WETH).transfer(address(lockRewards16), REWARDS_WETH);
         // emit log_named_uint("balance of WETH", ERC20(WETH).balanceOf(USER));
 
-        // emit log_named_uint("balance of y2k16 ", ERC20(Y2K).balanceOf(address(lockRewards16)));
+        // emit log_named_uint("balance of cordy16 ", ERC20(cordy).balanceOf(address(lockRewards16)));
         // emit log_named_uint("balance of weth16", ERC20(WETH).balanceOf(address(lockRewards16)));
 
-        lockRewards16.setNextEpoch_start(REWARDS_Y2K, REWARDS_WETH, EPOCH_DURATION_IN_DAYS,
+        lockRewards16.setNextEpoch_start(REWARDS_cordy, REWARDS_WETH, EPOCH_DURATION_IN_DAYS,
          EPOCH_START);
 
-        lockRewards16.setNextEpoch(REWARDS_Y2K, REWARDS_WETH,
+        lockRewards16.setNextEpoch(REWARDS_cordy, REWARDS_WETH,
          EPOCH_DURATION_IN_DAYS);
 
         vm.stopPrank();
@@ -129,15 +129,15 @@ contract LockTest is Test {
         console.log("Epoch 1");
         lockDeposit(MIN_EPOCHS);
         assertTrue(lockRewards16.balanceOf(USER) == AMOUNT_DEPOSIT, "balance of lockRewards16");
-        (uint lockedEpochs, uint rewardedY2k, uint rewardedWeth) = viewAccount16();
-        assertTrue(rewardedY2k == 0, "rewardedY2k");
+        (uint lockedEpochs, uint rewardedcordy, uint rewardedWeth) = viewAccount16();
+        assertTrue(rewardedcordy == 0, "rewardedcordy");
         assertTrue(rewardedWeth == 0, "rewardedWeth");
         assertTrue(lockedEpochs == MIN_EPOCHS, "lockedEpochs");
 
         startNextEpoch(block.timestamp + EPOCH_DURATION_IN_DAYS * 1 days);
         console.log("Epoch 2");
-        (lockedEpochs, rewardedY2k, rewardedWeth) = viewAccount16();
-        assertTrue(rewardedY2k == 0, "rewardedY2k");
+        (lockedEpochs, rewardedcordy, rewardedWeth) = viewAccount16();
+        assertTrue(rewardedcordy == 0, "rewardedcordy");
         assertTrue(rewardedWeth == 0, "rewardedWeth");
         assertTrue(lockedEpochs == MIN_EPOCHS, "lockedEpochs");
 
@@ -152,19 +152,19 @@ contract LockTest is Test {
         setupDeploy();
         lockDeposit(MIN_EPOCHS);
         assertTrue(lockRewards16.balanceOf(USER) == AMOUNT_DEPOSIT, "balance of lockRewards16");
-        (uint lockedEpochs, uint rewardedY2k, uint rewardedWeth) = viewAccount16();
-        assertTrue(rewardedY2k == 0, "rewardedY2k");
+        (uint lockedEpochs, uint rewardedcordy, uint rewardedWeth) = viewAccount16();
+        assertTrue(rewardedcordy == 0, "rewardedcordy");
         assertTrue(rewardedWeth == 0, "rewardedWeth");
         assertTrue(lockedEpochs == MIN_EPOCHS, "lockedEpochs");
 
         vm.warp(EPOCH_START + 1);
         // console.log("Epoch 2");
         startNextEpoch(block.timestamp + EPOCH_DURATION_IN_DAYS * 1 days);
-        (uint lockedEpochsNew, uint rewardedY2kNew, uint rewardedWethNew) = viewAccount16();
+        (uint lockedEpochsNew, uint rewardedcordyNew, uint rewardedWethNew) = viewAccount16();
         emit log_named_uint("lockedEpochsNew", lockedEpochsNew);
-        emit log_named_uint("rewardedY2kNew", rewardedY2kNew);
+        emit log_named_uint("rewardedcordyNew", rewardedcordyNew);
         emit log_named_uint("rewardedWethNew", rewardedWethNew);
-        assertTrue(rewardedY2kNew >= rewardedY2k, "rewardedY2k");
+        assertTrue(rewardedcordyNew >= rewardedcordy, "rewardedcordy");
         assertTrue(rewardedWethNew >= rewardedWeth, "rewardedWeth");
         assertTrue(lockedEpochsNew == MIN_EPOCHS - 1, "lockedEpochs");
 
@@ -176,7 +176,7 @@ contract LockTest is Test {
     ////////// ///////////////////////////////////////////////////////////////////*/
     // function testRealEpoch() public {
     //     address _lock = 0xbDAA858Fd7b0DC05F8256330fAcB35de86283cA0;
-    //     //address _y2k = 0x65c936f008BC34fE819bce9Fa5afD9dc2d49977f;
+    //     //address _cordy = 0x65c936f008BC34fE819bce9Fa5afD9dc2d49977f;
     //     address _weth = 0x82aF49447D8a07e3bd95BD0d56f35241523fBab1;
     //     uint _rewardAmount = 14100000000000000000;
     //     uint _days = 7;
@@ -184,7 +184,7 @@ contract LockTest is Test {
     //     vm.prank(0x5c84CF4d91Dc0acDe638363ec804792bB2108258); // treasury
     //     ERC20(_weth).transfer(address(_lock), _rewardAmount);
 
-    //     vm.prank(0x16cBaDA408F7523452fF91c8387b1784d00d10D8); // y2k ops
+    //     vm.prank(0x16cBaDA408F7523452fF91c8387b1784d00d10D8); // cordy ops
     //     LockRewards(_lock).setNextEpoch_start(0, _rewardAmount, _days, 1672444844);
 
     //     (uint256 _start, uint256 _finish, uint256 _locked, uint256 _rewards1, uint256 _rewards2, bool _isSet) = LockRewards(_lock).getCurrentEpoch();
@@ -202,7 +202,7 @@ contract LockTest is Test {
 
     // function testClaimRealEpoch() public {
     //     address _lock = 0xbDAA858Fd7b0DC05F8256330fAcB35de86283cA0;
-    //     //address _y2k = 0x65c936f008BC34fE819bce9Fa5afD9dc2d49977f;
+    //     //address _cordy = 0x65c936f008BC34fE819bce9Fa5afD9dc2d49977f;
     //     address _weth = 0x82aF49447D8a07e3bd95BD0d56f35241523fBab1;
     //     uint _rewardAmount = 14100000000000000000;
     //     uint _days = 1;
@@ -210,7 +210,7 @@ contract LockTest is Test {
     //     vm.prank(0x5c84CF4d91Dc0acDe638363ec804792bB2108258); // treasury
     //     ERC20(_weth).transfer(address(_lock), _rewardAmount);
 
-    //     vm.prank(0x16cBaDA408F7523452fF91c8387b1784d00d10D8); // y2k ops
+    //     vm.prank(0x16cBaDA408F7523452fF91c8387b1784d00d10D8); // cordy ops
     //     LockRewards(_lock).setNextEpoch_start(0, _rewardAmount, _days, 1672444844);
 
     //     (uint256 _start, uint256 _finish, uint256 _locked, uint256 _rewards1, uint256 _rewards2, bool _isSet) = LockRewards(_lock).getCurrentEpoch();
@@ -241,16 +241,16 @@ contract LockTest is Test {
         console2.log("block.timestamp", block.timestamp);
         
         vm.startPrank(USER);
-        ERC20(Y2K).transfer(address(lockRewards16), REWARDS_Y2K);
-        ERC20(Y2K).transfer(address(lockRewards16), REWARDS_Y2K);
-        // emit log_named_uint("balance of Y2K", ERC20(Y2K).balanceOf(USER));
+        ERC20(cordy).transfer(address(lockRewards16), REWARDS_cordy);
+        ERC20(cordy).transfer(address(lockRewards16), REWARDS_cordy);
+        // emit log_named_uint("balance of cordy", ERC20(cordy).balanceOf(USER));
         ERC20(WETH).transfer(address(lockRewards16), REWARDS_WETH);
         ERC20(WETH).transfer(address(lockRewards16), REWARDS_WETH);
 
-        // emit log_named_uint("balance of y2k16 ", ERC20(Y2K).balanceOf(address(lockRewards16)));
+        // emit log_named_uint("balance of cordy16 ", ERC20(cordy).balanceOf(address(lockRewards16)));
         // emit log_named_uint("balance of weth16", ERC20(WETH).balanceOf(address(lockRewards16)));
 
-        lockRewards16.setNextEpoch(REWARDS_Y2K, REWARDS_WETH, EPOCH_DURATION_IN_DAYS);
+        lockRewards16.setNextEpoch(REWARDS_cordy, REWARDS_WETH, EPOCH_DURATION_IN_DAYS);
         vm.stopPrank();
 
         (uint start, uint finish, uint locked, , , ) = lockRewards16.getNextEpoch();
@@ -348,30 +348,30 @@ contract LockTest is Test {
     ////////// ///////////////////////////////////////////////////////////////////*/
 
     function claimRewards() public {
-        uint oldBalanceY2k = ERC20(Y2K).balanceOf(USER);
+        uint oldBalancecordy = ERC20(cordy).balanceOf(USER);
         uint oldBalanceWeth = ERC20(WETH).balanceOf(USER);
         
         vm.startPrank(USER);
         (uint rewarded1, uint rewarded2) = lockRewards16.claimReward();
-        emit log_named_uint("rewarded Y2K ", rewarded1);
+        emit log_named_uint("rewarded cordy ", rewarded1);
         emit log_named_uint("rewarded WETH", rewarded2);
         assertTrue(rewarded1 > 0, "rewarded1_16 > 0");
         assertTrue(rewarded2 > 0, "rewarded2_16 > 0");
         vm.stopPrank();
 
-        uint newBalanceY2k = ERC20(Y2K).balanceOf(USER);
+        uint newBalancecordy = ERC20(cordy).balanceOf(USER);
         uint newBalanceWeth = ERC20(WETH).balanceOf(USER);
         
-        //balance of Y2K
-        emit log_named_uint("old balance of Y2K ", oldBalanceY2k);
-        emit log_named_uint("new balance of Y2K ", newBalanceY2k);
+        //balance of cordy
+        emit log_named_uint("old balance of cordy ", oldBalancecordy);
+        emit log_named_uint("new balance of cordy ", newBalancecordy);
         //balance of WETH
         emit log_named_uint("old balance of WETH", oldBalanceWeth);
         emit log_named_uint("new balance of WETH", newBalanceWeth);
 
         viewCurrentEpoch();
 
-        assertTrue(newBalanceY2k > oldBalanceY2k, "newBalanceY2k > oldBalanceY2k");
+        assertTrue(newBalancecordy > oldBalancecordy, "newBalancecordy > oldBalancecordy");
         assertTrue(newBalanceWeth > oldBalanceWeth, "newBalanceWeth > oldBalanceWeth");
     }
 
@@ -383,13 +383,13 @@ contract LockTest is Test {
 
         //skip 1st epoch
         vm.warp(EPOCH_START + 1 days);
-        (, uint y2kRewards16Old, uint wethRewards16Old) = viewAccount16();
+        (, uint cordyRewards16Old, uint wethRewards16Old) = viewAccount16();
         viewAccount16();
 
         claimRewards();        
-        (, uint y2kRewards16New, uint wethRewards16New) = viewAccount16();
+        (, uint cordyRewards16New, uint wethRewards16New) = viewAccount16();
 
-        assertTrue(y2kRewards16New < y2kRewards16Old, "y2kRewards16New < y2kRewards16Old");
+        assertTrue(cordyRewards16New < cordyRewards16Old, "cordyRewards16New < cordyRewards16Old");
         assertTrue(wethRewards16New < wethRewards16Old, "wethRewards16New < wethRewards16Old");
 
     }
@@ -397,13 +397,13 @@ contract LockTest is Test {
     // write test for compound lock check if rewards are accrued
     function testCompoundRewards() public {
         testClaimRewards();
-        (uint lockEpochs16Old, uint y2kBal16Old, uint wethBal16Old) = viewAccount16();
+        (uint lockEpochs16Old, uint cordyBal16Old, uint wethBal16Old) = viewAccount16();
         lockDeposit(0);
         console.log("Compound rewards");
         startNextEpoch(block.timestamp + 1 days + 2);
-        (uint lockEpochs16New, uint y2kBal16New, uint wethBal16New) = viewAccount16();
+        (uint lockEpochs16New, uint cordyBal16New, uint wethBal16New) = viewAccount16();
 
-        assertTrue(y2kBal16New > y2kBal16Old, "y2kBal16New > y2kBal16Old");
+        assertTrue(cordyBal16New > cordyBal16Old, "cordyBal16New > cordyBal16Old");
         assertTrue(wethBal16New > wethBal16Old, "wethBal16New > wethBal16Old");
         assertTrue(lockEpochs16New == lockEpochs16Old - 1, "lockEpochs16New == lockEpochs16Old");
         emit log_named_uint("lockEpochs16New", lockEpochs16New);
@@ -416,13 +416,13 @@ contract LockTest is Test {
         vm.assume(any < MIN_EPOCHS - 1 && any > 0);
         testClaimRewards();
         for(uint i = 0; i <= any; i++){
-            (uint lockEpochs16Old, uint y2kBal16Old, uint wethBal16Old) = viewAccount16();
+            (uint lockEpochs16Old, uint cordyBal16Old, uint wethBal16Old) = viewAccount16();
             lockDeposit(0);
             console.log("Compound rewards");
             startNextEpoch(block.timestamp + 1 days + 2);
-            (uint lockEpochs16New, uint y2kBal16New, uint wethBal16New) = viewAccount16();
+            (uint lockEpochs16New, uint cordyBal16New, uint wethBal16New) = viewAccount16();
 
-            assertTrue(y2kBal16New > y2kBal16Old, "y2kBal16New > y2kBal16Old");
+            assertTrue(cordyBal16New > cordyBal16Old, "cordyBal16New > cordyBal16Old");
             assertTrue(wethBal16New > wethBal16Old, "wethBal16New > wethBal16Old");
             assertTrue(lockEpochs16New == lockEpochs16Old - 1, "lockEpochs16New == lockEpochs16Old");
             emit log_named_uint("lockEpochs16New", lockEpochs16New);
@@ -471,25 +471,25 @@ contract LockTest is Test {
 
         //SKIP 1ST EPOCH to 2nd EPOCH
         viewCurrentEpoch();
-        (uint lockEpochs16Old, uint y2kBal16Old, uint wethBal16Old) = viewAccount16();
-        emit log_named_uint("y2kBal16Old ", y2kBal16Old);
+        (uint lockEpochs16Old, uint cordyBal16Old, uint wethBal16Old) = viewAccount16();
+        emit log_named_uint("cordyBal16Old ", cordyBal16Old);
         emit log_named_uint("wethBal16Old", wethBal16Old);
 
         startNextEpoch(block.timestamp + 1 days + 2);
-        (uint lockEpochs16New, uint y2kBal16New, uint wethBal16New) = viewAccount16();
+        (uint lockEpochs16New, uint cordyBal16New, uint wethBal16New) = viewAccount16();
 
-        assertTrue(y2kBal16New > y2kBal16Old, "y2kBal16New > y2kBal16Old");
+        assertTrue(cordyBal16New > cordyBal16Old, "cordyBal16New > cordyBal16Old");
         assertTrue(wethBal16New > wethBal16Old, "wethBal16New > wethBal16Old");
-        emit log_named_uint("y2kBal16New ", y2kBal16New);
+        emit log_named_uint("cordyBal16New ", cordyBal16New);
         emit log_named_uint("wethBal16New", wethBal16New);
 
         //CLAIM REWARDS
         vm.startPrank(USER);
 
         (uint rewarded1, uint rewarded2) = lockRewards16.claimReward();
-        emit log_named_uint("rewarded Y2K ", rewarded1);
+        emit log_named_uint("rewarded cordy ", rewarded1);
         emit log_named_uint("rewarded WETH", rewarded2);
-        assertTrue(rewarded1 > 0, "rewardedY2K_16 > 0");
+        assertTrue(rewarded1 > 0, "rewardedcordy_16 > 0");
         assertTrue(rewarded2 > 0, "rewardedWETH_16 > 0");
 
         vm.stopPrank();
@@ -507,26 +507,26 @@ contract LockTest is Test {
         //SKIP 2nd EPOCH to 3rd EPOCH
         console.log("check 3rd epoch compounded rewards");
         viewCurrentEpoch();
-        (lockEpochs16Old, y2kBal16Old, wethBal16Old) = viewAccount16();
-        emit log_named_uint("y2kBal16Old ", y2kBal16Old);
+        (lockEpochs16Old, cordyBal16Old, wethBal16Old) = viewAccount16();
+        emit log_named_uint("cordyBal16Old ", cordyBal16Old);
         emit log_named_uint("wethBal16Old", wethBal16Old);
 
         startNextEpoch(block.timestamp + 1 days + 2);
-        (lockEpochs16New, y2kBal16New, wethBal16New) = viewAccount16();
+        (lockEpochs16New, cordyBal16New, wethBal16New) = viewAccount16();
 
-        assertTrue(y2kBal16New > y2kBal16Old, "y2kBal16New > y2kBal16Old");
+        assertTrue(cordyBal16New > cordyBal16Old, "cordyBal16New > cordyBal16Old");
         assertTrue(wethBal16New > wethBal16Old, "wethBal16New > wethBal16Old");
-        emit log_named_uint("y2kBal16New ", y2kBal16New);
+        emit log_named_uint("cordyBal16New ", cordyBal16New);
         emit log_named_uint("wethBal16New", wethBal16New);
 
         //create a new epoch SKIP 3rd EPOCH to 4th EPOCH
         console.log("create a new 4th epoch AND SEE COMPOUNDED REWARDS");
         startNextEpoch(block.timestamp + 1 days + 2);
-        (lockEpochs16New, y2kBal16New, wethBal16New) = viewAccount16();
+        (lockEpochs16New, cordyBal16New, wethBal16New) = viewAccount16();
 
-        assertTrue(y2kBal16New > y2kBal16Old, "y2kBal16New > y2kBal16Old");
+        assertTrue(cordyBal16New > cordyBal16Old, "cordyBal16New > cordyBal16Old");
         assertTrue(wethBal16New > wethBal16Old, "wethBal16New > wethBal16Old");
-        emit log_named_uint("y2kBal16New ", y2kBal16New);
+        emit log_named_uint("cordyBal16New ", cordyBal16New);
         emit log_named_uint("wethBal16New", wethBal16New);
         
     }
@@ -543,13 +543,13 @@ contract LockTest is Test {
         emit log_named_uint("balance", balance);
         emit log_named_uint("epochs locked", lockEpochs);
         emit log_named_uint("last epoch paid", lastEpochPaid);
-        // emit log_named_uint("Y2K rewards1 ", rewards1);
+        // emit log_named_uint("cordy rewards1 ", rewards1);
         // emit log_named_uint("WETH rewards2", rewards2);
         vm.stopPrank();
 
-        uint y2kBal = rewards1;
+        uint cordyBal = rewards1;
         uint wethBal = rewards2;
-        return (lockEpochs, y2kBal, wethBal);
+        return (lockEpochs, cordyBal, wethBal);
     }
 
     function viewCurrentEpoch() public {

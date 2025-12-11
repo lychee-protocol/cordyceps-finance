@@ -3,7 +3,7 @@ pragma solidity 0.8.15;
 
 import {ERC20} from "@solmate/tokens/ERC20.sol";
 
-contract Y2K is ERC20("Y2K", "Y2K", 18) {
+contract cordy is ERC20("cordy", "cordy", 18) {
     error ZeroAddress();
     error ZeroAmount();
 

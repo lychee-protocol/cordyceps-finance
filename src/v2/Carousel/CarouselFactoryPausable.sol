@@ -13,7 +13,7 @@ import {
     CarouselCreatorPausable
 } from "../libraries/CarouselCreatorPausable.sol";
 
-/// @author Y2K Finance Team
+/// @author cordy Finance Team
 
 contract CarouselFactoryPausable is VaultFactoryV2Pausable {
     using SafeERC20 for IERC20;
@@ -71,7 +71,7 @@ contract CarouselFactoryPausable is VaultFactoryV2Pausable {
         // set oracle for the market
         marketToOracle[marketId] = _marketCalldata.oracle;
 
-        //y2kUSDC_99*PREMIUM
+        //cordyUSDC_99*PREMIUM
         premium = CarouselCreatorPausable.createCarousel(
             CarouselCreatorPausable.CarouselMarketConfiguration(
                 _marketCalldata.underlyingAsset == WETH,
@@ -90,7 +90,7 @@ contract CarouselFactoryPausable is VaultFactoryV2Pausable {
             )
         );
 
-        // y2kUSDC_99*COLLATERAL
+        // cordyUSDC_99*COLLATERAL
         collateral = CarouselCreatorPausable.createCarousel(
             CarouselCreatorPausable.CarouselMarketConfiguration(
                 _marketCalldata.underlyingAsset == WETH,

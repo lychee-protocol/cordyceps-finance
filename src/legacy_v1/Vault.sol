@@ -102,8 +102,8 @@ contract Vault is SemiFungibleVault, ReentrancyGuard {
     /**
         @notice constructor
         @param  _assetAddress    token address representing your asset to be deposited;
-        @param  _name   token name for the ERC1155 mints. Insert the name of your token; Example: Y2K_USDC_1.2$
-        @param  _symbol token symbol for the ERC1155 mints. insert here if risk or hedge + Symbol. Example: HedgeY2K or riskY2K;
+        @param  _name   token name for the ERC1155 mints. Insert the name of your token; Example: cordy_USDC_1.2$
+        @param  _symbol token symbol for the ERC1155 mints. insert here if risk or hedge + Symbol. Example: Hedgecordy or riskcordy;
         @param  _token  address of the oracle to lookup the price in chainlink oracles;
         @param  _strikePrice    uint256 representing the price to trigger the depeg event;
         @param _controller  address of the controller contract, this contract can trigger the depeg events;

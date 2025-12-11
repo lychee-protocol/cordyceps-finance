@@ -11,7 +11,7 @@ import {
 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {CarouselCreator} from "../libraries/CarouselCreator.sol";
 
-/// @author Y2K Finance Team
+/// @author cordy Finance Team
 
 contract CarouselFactory is VaultFactoryV2 {
     using SafeERC20 for IERC20;
@@ -73,7 +73,7 @@ contract CarouselFactory is VaultFactoryV2 {
         // set oracle for the market
         marketToOracle[marketId] = _marketCalldata.oracle;
 
-        //y2kUSDC_99*PREMIUM
+        //cordyUSDC_99*PREMIUM
         premium = CarouselCreator.createCarousel(
             CarouselCreator.CarouselMarketConfiguration(
                 _marketCalldata.underlyingAsset == WETH,
@@ -92,7 +92,7 @@ contract CarouselFactory is VaultFactoryV2 {
             )
         );
 
-        // y2kUSDC_99*COLLATERAL
+        // cordyUSDC_99*COLLATERAL
         collateral = CarouselCreator.createCarousel(
             CarouselCreator.CarouselMarketConfiguration(
                 _marketCalldata.underlyingAsset == WETH,

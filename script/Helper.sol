@@ -5,10 +5,10 @@ import "forge-std/Script.sol";
 import "forge-std/StdJson.sol";
 import "../src/legacy_v1/VaultFactory.sol";
 import "../src/legacy_v1/Controller.sol";
-//TODO change this after deploy  y2k token
+//TODO change this after deploy  cordy token
 // import "../src/legacy_v1/rewards/PausableRewardsFactory.sol";
 import "../src/legacy_v1/rewards/RewardsFactory.sol";
-import "../src/tokens/Y2K.sol";
+import "../src/tokens/cordy.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "./keepers/KeeperDepeg.sol";
 import "./keepers/KeeperEndEpoch.sol";
@@ -54,7 +54,7 @@ contract HelperConfig is Script {
         address treasury;
         address vaultFactory;
         address weth;
-        address y2k;
+        address cordy;
     }
 
     struct ConfigMarket {
@@ -82,7 +82,7 @@ contract HelperConfig is Script {
     VaultFactory vaultFactory;
     Controller controller;
     RewardsFactory rewardsFactory;
-    Y2K y2k;
+    cordy cordy;
     KeeperGelatoDepeg keeperDepeg;
     KeeperGelatoEndEpoch keeperEndEpoch;
     ConfigVariables configVariables;
@@ -100,7 +100,7 @@ contract HelperConfig is Script {
         vaultFactory = VaultFactory(configAddresses.vaultFactory);
         controller = Controller(configAddresses.controller);
         rewardsFactory = RewardsFactory(configAddresses.rewardsFactory);
-        y2k = Y2K(configAddresses.y2k);
+        cordy = cordy(configAddresses.cordy);
         keeperDepeg = KeeperGelatoDepeg(configAddresses.keeperDepeg);
         keeperEndEpoch = KeeperGelatoEndEpoch(configAddresses.keeperEndEpoch);
     }

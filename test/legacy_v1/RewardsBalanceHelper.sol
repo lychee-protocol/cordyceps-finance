@@ -64,7 +64,7 @@ contract RewardsBalanceHelper is Test {
         govToken = new GovToken();
         rewardsFactory = new RewardsFactory(address(govToken), address(vaultFactory));
 
-        (hedge, risk) = vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_STRIKE, beginEpoch, endEpoch, ORACLE_USDC, "y2kUSDC_991*");
+        (hedge, risk) = vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_STRIKE, beginEpoch, endEpoch, ORACLE_USDC, "cordyUSDC_991*");
         (hedgeAddr, riskAddr) = rewardsFactory.createStakingRewards(SINGLE_MARKET_INDEX, endEpoch);
 
         farms.push(0x05f318Ed71F42848E5a3f249805e51520D77c654);

@@ -1,6 +1,6 @@
 {"configAddresses":
   [{
-        "y2k": "0x5D59e5837F7e5d0F710178Eda34d9eCF069B36D2",    
+        "cordy": "0x5D59e5837F7e5d0F710178Eda34d9eCF069B36D2",    
         "treasury": "0xaC0D2cF77a8F8869069fc45821483701A264933B",
         "admin": "0xaC0D2cF77a8F8869069fc45821483701A264933B",
         "policy": "0xaC0D2cF77a8F8869069fc45821483701A264933B",

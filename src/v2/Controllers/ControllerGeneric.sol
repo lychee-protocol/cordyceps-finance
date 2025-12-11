@@ -6,7 +6,7 @@ import {IVaultV2} from "../interfaces/IVaultV2.sol";
 import {FixedPointMathLib} from "@solmate/utils/FixedPointMathLib.sol";
 import {IConditionProvider} from "../interfaces/IConditionProvider.sol";
 
-/// @author Y2K Finance Team
+/// @author cordy Finance Team
 contract ControllerGeneric {
     using FixedPointMathLib for uint256;
     IVaultFactoryV2 public immutable vaultFactory;

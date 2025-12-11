@@ -5,14 +5,14 @@ import {IVaultV2} from "./interfaces/IVaultV2.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {VaultV2Creator} from "./libraries/VaultV2Creator.sol";
 
-/// @author Y2K Finance Team
+/// @author cordy Finance Team
 
 contract VaultFactoryV2 is Ownable {
     address public immutable WETH;
     bytes internal constant COLLAT = "COLLATERAL";
     bytes internal constant PREMIUM = "PREMIUM";
-    bytes internal constant CSYMBOL = "cY2K";
-    bytes internal constant PSYMBOL = "pY2K";
+    bytes internal constant CSYMBOL = "ccordy";
+    bytes internal constant PSYMBOL = "pcordy";
     /*//////////////////////////////////////////////////////////////
                                 Storage
     //////////////////////////////////////////////////////////////*/
@@ -101,7 +101,7 @@ contract VaultFactoryV2 is Ownable {
         // set oracle for the market
         marketToOracle[marketId] = _marketCalldata.oracle;
 
-        //y2kUSDC_99*PREMIUM
+        //cordyUSDC_99*PREMIUM
         premium = VaultV2Creator.createVaultV2(
             VaultV2Creator.MarketConfiguration(
                 _marketCalldata.underlyingAsset == WETH,
@@ -116,7 +116,7 @@ contract VaultFactoryV2 is Ownable {
             )
         );
 
-        // y2kUSDC_99*COLLATERAL
+        // cordyUSDC_99*COLLATERAL
         collateral = VaultV2Creator.createVaultV2(
             VaultV2Creator.MarketConfiguration(
                 _marketCalldata.underlyingAsset == WETH,

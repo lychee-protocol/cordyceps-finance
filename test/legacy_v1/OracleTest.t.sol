@@ -56,7 +56,7 @@ contract OracleTest is OracleHelper {
         //testing for 7 decimal pair
         vm.startPrank(ADMIN);
         sevenDec = new FakeFakeOracle(ORACLE_MIM, 10000000, 7);
-        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_CCC, beginEpoch, endEpoch, address(sevenDec), "y2kMIM_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_CCC, beginEpoch, endEpoch, address(sevenDec), "cordyMIM_99*");
         testPriceOne = controller.getLatestPrice(TOKEN_MIM);
         emit log_named_int("testPrice for 7 decimals ", testPriceOne);
         emit log_named_int("strikePrice              ", DEPEG_CCC);
@@ -66,7 +66,7 @@ contract OracleTest is OracleHelper {
         //testing for 8 decimal pair
         vm.startPrank(ADMIN);
         eightDec = new FakeOracle(ORACLE_MIM, 100000000);
-        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_CCC, beginEpoch, endEpoch, address(eightDec), "y2kMIM_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_CCC, beginEpoch, endEpoch, address(eightDec), "cordyMIM_99*");
         testPriceOne = controller.getLatestPrice(TOKEN_MIM);
         emit log_named_int("testPrice for 8 decimals ", testPriceOne);
         emit log_named_int("strikePrice              ", DEPEG_CCC);
@@ -75,7 +75,7 @@ contract OracleTest is OracleHelper {
 
         //testing for 18 decimal pair DEPEG
         vm.startPrank(ADMIN);
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_FRAX, "y2kFRAX_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_CCC, beginEpoch, endEpoch, ORACLE_FRAX, "cordyFRAX_99*");
         testPriceTwo = controller.getLatestPrice(TOKEN_FRAX);
         emit log_named_int("testPrice for 18 decimals", testPriceTwo);
         emit log_named_int("strike price             ", DEPEG_CCC);
@@ -86,7 +86,7 @@ contract OracleTest is OracleHelper {
         //testing for 18 decimal pair PEG
         vm.startPrank(ADMIN);
         eighteenDec = new FakeOracle(ORACLE_MIM, 1000000000000000000);
-        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_CCC, beginEpoch, endEpoch, address(eighteenDec), "y2kMIM_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_MIM, DEPEG_CCC, beginEpoch, endEpoch, address(eighteenDec), "cordyMIM_99*");
         testPriceOne = controller.getLatestPrice(TOKEN_MIM);
         emit log_named_int("testPrice for 18 decimals", testPriceOne);
         emit log_named_int("strikePrice              ", DEPEG_CCC);
@@ -96,7 +96,7 @@ contract OracleTest is OracleHelper {
         //testing for +18 decimal pairs, 20 decimals
         vm.startPrank(ADMIN);
         plusDecimals = new FakeFakeOracle(ORACLE_USDC, 100000000000000000000, 20);
-        vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_CCC, beginEpoch, endEpoch, address(plusDecimals), "y2kDAI_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_USDC, DEPEG_CCC, beginEpoch, endEpoch, address(plusDecimals), "cordyDAI_99*");
         testPriceThree = controller.getLatestPrice(TOKEN_USDC);
         emit log_named_int("testPrice for +18 decimal", testPriceThree);
         emit log_named_int("strike price             ", DEPEG_CCC);
@@ -122,7 +122,7 @@ contract OracleTest is OracleHelper {
         emit log_named_int("oracle?price?", price);
 
         vm.startPrank(ADMIN);
-        vaultFactory.createNewMarket(FEE, TOKEN_STETH, DEPEG_AAA, beginEpoch, endEpoch, address(pegOracle), "y2kSTETH_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_STETH, DEPEG_AAA, beginEpoch, endEpoch, address(pegOracle), "cordySTETH_99*");
         vm.stopPrank();
 
         nowPrice = controller.getLatestPrice(TOKEN_STETH);

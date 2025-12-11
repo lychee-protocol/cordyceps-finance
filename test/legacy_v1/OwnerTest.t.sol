@@ -24,7 +24,7 @@ contract OwnerTest is OwnerHelper{
         
         vm.startPrank(ADMIN);
         fakeOracle = new FakeOracle(ORACLE_FRAX, STRIKE_PRICE_FAKE_ORACLE);
-        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "y2kFRAX_99*");
+        vaultFactory.createNewMarket(FEE, TOKEN_FRAX, DEPEG_AAA, beginEpoch, endEpoch, address(fakeOracle), "cordyFRAX_99*");
         vm.stopPrank();
 
         hedge = vaultFactory.getVaults(1)[0];

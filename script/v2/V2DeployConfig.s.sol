@@ -5,12 +5,12 @@ import "./V2Helper.sol";
 import "../../src/v2/interfaces/IConditionProvider.sol";
 import "../../src/v2/Controllers/ControllerGeneric.sol";
 
-/// @author Y2K Team
+/// @author cordy Team
 //forge script V2DeployConfig --rpc-url $ARBITRUM_RPC_URL --private-key $PRIVATE_KEY --broadcast --skip-simulation --slow --verify -vv
 
 // whitelist controller 0xC0655f3dace795cc48ea1E2e7BC012c1eec912dC
 contract V2DeployConfig is HelperV2 {
-    function setupY2K() public {
+    function setupcordy() public {
         setVariables();
 
         configAddresses = getConfigAddresses(configVariables.isTestEnv); //true if test env
@@ -28,16 +28,16 @@ contract V2DeployConfig is HelperV2 {
         );
         console.log("Address Factory", configAddresses.carouselFactory);
         contractToAddresses(configAddresses);
-        // console log y2k approval for factory
+        // console log cordy approval for factory
         console2.log(
-            "Y2K allowance for factory",
-            IERC20(y2k).allowance(configAddresses.policy, configAddresses.carouselFactory)
+            "cordy allowance for factory",
+            IERC20(cordy).allowance(configAddresses.policy, configAddresses.carouselFactory)
         );
     }
 
     function run() public {
         //LOAD json config and check bool deploy new markets
-        setupY2K();
+        setupcordy();
         //if true deploy new markets
         vm.startBroadcast();
 
@@ -60,7 +60,7 @@ contract V2DeployConfig is HelperV2 {
             deployMarkets();
         }
         if (configVariables.epochs) {
-            // IERC20(y2k).approve(address(factory), type(uint256).max);
+            // IERC20(cordy).approve(address(factory), type(uint256).max);
             //deploy epochs
             validateEpochs();
             console2.log(
@@ -174,7 +174,7 @@ contract V2DeployConfig is HelperV2 {
             ConfigEpochWithEmission memory epoch = epochs[i];
             CarouselFactory localFactory = factory;
             //  epoch.isGenericController
-            // ? keccak256(abi.encodePacked(epoch.name)) == keccak256(abi.encodePacked("y2kVST_984_WETH*")) ?
+            // ? keccak256(abi.encodePacked(epoch.name)) == keccak256(abi.encodePacked("cordyVST_984_WETH*")) ?
             //         factory :
             //         pausableFactory
             // : factory;
@@ -225,22 +225,22 @@ contract V2DeployConfig is HelperV2 {
     function validateEpochs() public {
         ConfigEpochWithEmission[] memory epochs = getConfigEpochs();
         if (
-            IERC20(y2k).allowance(configAddresses.policy, address(factory)) <
+            IERC20(cordy).allowance(configAddresses.policy, address(factory)) <
             configVariables.totalAmountOfEmittedTokens
         ) {
             console2.log(
                 "Not enough allowance",
-                IERC20(y2k).allowance(address(this), address(factory))
+                IERC20(cordy).allowance(address(this), address(factory))
             );
             revert("Not enough allowance");
         }
         //    if (
-        //         IERC20(y2k).allowance(configAddresses.policy, address(pausableFactory)) <
+        //         IERC20(cordy).allowance(configAddresses.policy, address(pausableFactory)) <
         //         configVariables.totalAmountOfEmittedTokens
         //     ) {
         //         console2.log(
         //             "Not enough allowance",
-        //             IERC20(y2k).allowance(address(this), address(pausableFactory))
+        //             IERC20(cordy).allowance(address(this), address(pausableFactory))
         //         );
         //         revert("Not enough allowance");
         //     }
@@ -258,7 +258,7 @@ contract V2DeployConfig is HelperV2 {
             CarouselFactory localFactory = factory;
             //  epoch.isGenericController
             // ?
-            //     keccak256(abi.encodePacked(epoch.name)) == keccak256(abi.encodePacked("y2kVST_984_WETH*")) ?
+            //     keccak256(abi.encodePacked(epoch.name)) == keccak256(abi.encodePacked("cordyVST_984_WETH*")) ?
             //         factory :
             //         pausableFactory
             // : factory;

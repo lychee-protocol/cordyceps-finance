@@ -16,7 +16,7 @@ import {FixedPointMathLib} from "@solmate/utils/FixedPointMathLib.sol";
 
 import "forge-std/console.sol";
 
-/// @author Y2K Finance Team
+/// @author cordy Finance Team
 
 contract VaultV2Pausable is
     IVaultV2Pausable,
@@ -30,10 +30,10 @@ contract VaultV2Pausable is
                                IMMUTABLES AND STORAGE
     //////////////////////////////////////////////////////////////*/
 
-    // Earthquake parameters
+    // Cordyceps parameters
     address public immutable token;
     uint256 public immutable strike;
-    // Earthquake bussiness logic
+    // Cordyceps bussiness logic
     bool public immutable isWETH;
     address public counterPartyVault;
     address public factory;

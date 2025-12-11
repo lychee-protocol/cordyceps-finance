@@ -9,7 +9,7 @@ import {
 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {FixedPointMathLib} from "@solmate/utils/FixedPointMathLib.sol";
 
-/// @author Y2K Finance Team
+/// @author cordy Finance Team
 
 contract Carousel is VaultV2 {
     using SafeERC20 for IERC20;
@@ -17,7 +17,7 @@ contract Carousel is VaultV2 {
     /*///////////////////////////////////////////////////////////////
                                IMMUTABLES AND STORAGE
     //////////////////////////////////////////////////////////////*/
-    // Earthquake parameters
+    // Cordyceps parameters
     uint256 public relayerFee;
     uint256 public depositFee;
     uint256 public minQueueDeposit;

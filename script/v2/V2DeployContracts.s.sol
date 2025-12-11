@@ -40,7 +40,7 @@ contract V2DeployContracts is Script, HelperV2 {
         ConfigAddressesV2 memory addresses = getConfigAddresses(true); // false = prod, true = testing
         // address weth = addresses.weth;
         // address treasury = addresses.treasury;
-        // address emissionToken = addresses.y2k;
+        // address emissionToken = addresses.cordy;
         // address policy = addresses.policy;
         address factory = addresses.carouselFactory;
 
@@ -75,7 +75,7 @@ contract V2DeployContracts is Script, HelperV2 {
         // address beraHoney = 0x7EeCA4205fF31f947EdBd49195a7A88E6A91161B; // Honey on Bera
         // address beraWBERA = 0x5806E416dA447b267cEA759358cF22Cc41FAE80F; // WBERA on Bera
         // address beraTreasury = 0x9EF27dB2778690edf94632F1C57d0Bd2fDAadd7f; // Treasury on Bera
-        // address beraY2KDummy = 0x22A558bBc6986cD4F9b561089cb0c5AB62f1534e; // Y2K on Bera
+        // address beracordyDummy = 0x22A558bBc6986cD4F9b561089cb0c5AB62f1534e; // cordy on Bera
         // address beraAdminOracleETH = 0x131d85f66F2f297477Ad22Ea4E222a864Bb122E5; // Admin Oracle on Bera ETH
         // address beraAdminOracleBTC = 0x12f142705a1AeFD7708250e14fe6FA71E73258A5; // Oracle for WBTC on Bera
         address blastETH = 0x9E9950E8c9aFDDE8e3f55B52014b7610faE3BC5a;
@@ -95,10 +95,10 @@ contract V2DeployContracts is Script, HelperV2 {
         // // factory.changeTimelocker(address(timeLock));
 
         /**
-         * Dummy or Y2K Token
+         * Dummy or cordy Token
          */
-        // DummyERC20 y2kDummy = new DummyERC20();
-        // console2.log("Y2K Dummy address", address(y2kDummy));
+        // DummyERC20 cordyDummy = new DummyERC20();
+        // console2.log("cordy Dummy address", address(cordyDummy));
 
         /**
          * Carousel Factory
@@ -107,7 +107,7 @@ contract V2DeployContracts is Script, HelperV2 {
         //         blastETH,
         //         blastTreasury,
         //         msg.sender,
-        //         address(y2kDummy)
+        //         address(cordyDummy)
         //     );
         // CarouselFactoryPausable factory = CarouselFactoryPausable(deployedVaultFactory);
 
@@ -142,8 +142,8 @@ contract V2DeployContracts is Script, HelperV2 {
         //             50_000e8, // Strike price
         //             beraAdminOracleBTC,
         //             beraWBERA,
-        //             "y2kBTC_3000_WBERA*", // marketName
-        //             "https://y2k.finance", // marketUri
+        //             "cordyBTC_3000_WBERA*", // marketName
+        //             "https://cordy.finance", // marketUri
         //             address(beraController),
         //             200000000000000, // relayFee
         //             0, // depositFee
@@ -153,7 +153,7 @@ contract V2DeployContracts is Script, HelperV2 {
         // console2.log("Carousel Market prem", prem);
         // console2.log("Carousel Market collateral", collat);
         // console2.log("Carousel Market marketId", marketId);
-        // // IERC20(beraY2KDummy).approve(address(factory), type(uint256).max);
+        // // IERC20(beracordyDummy).approve(address(factory), type(uint256).max);
 
         // uint256 marketId = 75423911543813429950440277204588325011001806362079737252920180136286107657801;
         // uint40 epochBegin = 1707868800;
@@ -425,7 +425,7 @@ contract V2DeployContracts is Script, HelperV2 {
         // console2.log("resolveKeeper address", address(resolveKeeper));
         // console2.log("resolveKeeperGenericController address", address(resolveKeeperGenericController));
         // console2.log("rolloverKeeper address", address(rolloverKeeperPausable));
-        // console2.log("Y2K token address", addresses.y2k);
+        // console2.log("cordy token address", addresses.cordy);
 
         console2.log("\n");
     }

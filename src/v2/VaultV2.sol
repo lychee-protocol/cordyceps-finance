@@ -14,7 +14,7 @@ import {
 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {FixedPointMathLib} from "@solmate/utils/FixedPointMathLib.sol";
 
-/// @author Y2K Finance Team
+/// @author cordy Finance Team
 
 contract VaultV2 is IVaultV2, SemiFungibleVault, ReentrancyGuard {
     using SafeERC20 for IERC20;
@@ -24,10 +24,10 @@ contract VaultV2 is IVaultV2, SemiFungibleVault, ReentrancyGuard {
                                IMMUTABLES AND STORAGE
     //////////////////////////////////////////////////////////////*/
 
-    // Earthquake parameters
+    // Cordyceps parameters
     address public immutable token;
     uint256 public immutable strike;
-    // Earthquake bussiness logic
+    // Cordyceps bussiness logic
     bool public immutable isWETH;
     address public counterPartyVault;
     address public factory;

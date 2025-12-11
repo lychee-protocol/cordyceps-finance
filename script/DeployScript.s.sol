@@ -8,7 +8,7 @@ import "./Helper.sol";
 // forge script DeployScript --rpc-url $ARBITRUM_RPC_URL --private-key $PRIVATE_KEY --broadcast --skip-simulation --slow -vv
 //forge script DeployScript --rpc-url $ARBITRUM_RPC_URL --private-key $PRIVATE_KEY --broadcast --skip-simulation --slow --verify -vv
 contract DeployScript is Script, HelperConfig {
-    function setupY2K() public {
+    function setupcordy() public {
         ConfigAddresses memory addresses = getConfigAddresses(false); //true if test env
         contractToAddresses(addresses);
         setVariables();
@@ -16,7 +16,7 @@ contract DeployScript is Script, HelperConfig {
 
     function run() public {
         //LOAD json config and check bool deploy new markets
-        setupY2K();
+        setupcordy();
         //if true deploy new markets
         vm.startBroadcast();
 
@@ -121,8 +121,8 @@ contract DeployScript is Script, HelperConfig {
         string memory _rewardsAmountHEDGE,
         string memory _rewardsAmountRISK
     ) public {
-        y2k.transfer(_rHedge, stringToUint(_rewardsAmountHEDGE));
-        y2k.transfer(_rRisk, stringToUint(_rewardsAmountRISK));
+        cordy.transfer(_rHedge, stringToUint(_rewardsAmountHEDGE));
+        cordy.transfer(_rRisk, stringToUint(_rewardsAmountRISK));
         //start rewards for farms
         StakingRewards(_rHedge).notifyRewardAmount(
             stringToUint(_rewardsAmountHEDGE)

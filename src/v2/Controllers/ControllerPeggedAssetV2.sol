@@ -7,7 +7,7 @@ import "@chainlink/interfaces/AggregatorV3Interface.sol";
 import "@chainlink/interfaces/AggregatorV2V3Interface.sol";
 import {FixedPointMathLib} from "@solmate/utils/FixedPointMathLib.sol";
 
-/// @author Y2K Finance Team
+/// @author cordy Finance Team
 
 contract ControllerPeggedAssetV2 {
     using FixedPointMathLib for uint256;
